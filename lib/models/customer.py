@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine, Column, Integer, String 
 from sqlalchemy.orm import relationship 
 import sqlalchemy.orm
-from .Base import Base
+from .Base import Base, session
+from models.review import Review
 
 
 class Customer(Base):
@@ -20,3 +21,12 @@ class Customer(Base):
         return self.reviews
     def get_restaurants(self):
         return [review.restaurants.name for review in self.reviews]
+    def favorite_restaurant(self):
+        if not self.reviews:
+            return  None
+        else:
+            return max (self.review(),key=lambda review: review.star_rating).restaurant()
+    def add_review(self, restaurant, rating):
+        review = Review(customer=self, restaurant=restaurant, star_rating=rating)
+        session.add(review)
+        session.commit()
