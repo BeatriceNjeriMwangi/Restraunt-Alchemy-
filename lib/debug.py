@@ -24,13 +24,23 @@ for list_restraunts in session.query(Review).all():
     restraunts = list_restraunts.get_restaurant()
     print(restraunts.name)
 
+list_rest = session.query(Restaurant).first()
+all_reviews= list_rest.get_reviews()
 
-list_review = session.query(Restaurant).first()
-reviews = list_review.get_review()
-print(reviews) 
-    
-# list_review = session.query(Restaurant).all()
-# for review in list_review:
-#     reviews=review.get_reviews()
-#     print(reviews)
+for review in all_reviews:
+    print(f"{review.star_rating} {list_rest.name}")
 
+
+all_customers = session.query(Restaurant).first()
+customers = all_customers.get_customers()
+print(customers)
+
+list_customers = session.query(Customer).first()
+list_reviews = list_customers.get_reviews()
+
+for review in list_reviews:
+    print(f"{review.star_rating} {list_customers.full_name()}")
+
+collection =session.query(Customer).first()
+restaurants =collection.get_restaurants()
+print(restaurants)

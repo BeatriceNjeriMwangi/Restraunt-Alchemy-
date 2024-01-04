@@ -9,7 +9,7 @@ class Customer(Base):
     id=Column(Integer, primary_key=True)
     first_name=Column(String)
     last_name=Column(String)
-    reviews=relationship("Review", back_populates="customer", cascade = "all")
+    reviews=relationship("Review", back_populates="customers", cascade = "all")
 
     def __repr__(self):
         return f"<Customer(id={self.id}, first_name={self.first_name}, last_name={self.last_name})>"
@@ -19,4 +19,4 @@ class Customer(Base):
     def get_reviews(self):
         return self.reviews
     def get_restaurants(self):
-        return [review.restaurant for review in self.review]
+        return [review.restaurants.name for review in self.reviews]
