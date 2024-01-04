@@ -3,9 +3,9 @@ from sqlalchemy.orm import relationship
 import sqlalchemy.orm
 from sqlalchemy.ext.declarative import declarative_base
 
-from .Base import Base
+from .Base import Base, session
 class Restaurant(Base):
-    __tablename__="restaurants"
+    __tareblename__="restaurants"
     id=Column(Integer, primary_key=True)
     name=Column(String)
     price=Column(Integer)
@@ -20,4 +20,10 @@ class Restaurant(Base):
     def get_customers(self):
         return [review.customers.full_name() for review in self.reviews]
     
-   
+    @classmethod
+    def fanciest(cls):
+        
+        return session.query(cls).order_by(cls.price.desc()).first()
+
+    def all_reviews(self):
+        return [ review.full_review() for review in self.reviews]

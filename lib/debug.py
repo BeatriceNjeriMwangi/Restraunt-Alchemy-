@@ -48,3 +48,6 @@ print(restaurants)
 add_reviews= Customer.add_review(Customer,5,4)
 
 full_reviews= Review.full_review()
+
+fanciest_rest = Restaurant.fanciest()
+print(fanciest_rest) 
