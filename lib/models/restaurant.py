@@ -19,3 +19,5 @@ class Restaurant(Base):
 
     def get_customers(self):
         return [review.customers.full_name() for review in self.reviews]
+    
+   

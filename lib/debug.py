@@ -44,3 +44,7 @@ for review in list_reviews:
 collection =session.query(Customer).first()
 restaurants =collection.get_restaurants()
 print(restaurants)
+
+add_reviews= Customer.add_review(Customer,5,4)
+
+full_reviews= Review.full_review()
