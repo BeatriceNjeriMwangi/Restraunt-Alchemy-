@@ -45,9 +45,25 @@ collection =session.query(Customer).first()
 restaurants =collection.get_restaurants()
 print(restaurants)
 
-add_reviews= Customer.add_review(Customer,5,4)
+# customer = session.query(Customer).first()
+# restaurant = session.query(Restaurant).first()
 
-full_reviews= Review.full_review()
+# add_newreview = customer.add_review(restaurant=restaurant,rating=5)
+  
 
-fanciest_rest = Restaurant.fanciest()
-print(fanciest_rest) 
+# session.add(add_newreview)
+# # print (f"Added review for customer:{customer.full_name()}")
+# for review in customer.reviews:
+#             print (f"Review id:{review.id}, rating:{review.star_rating}")
+
+restraunt_id =3
+all_reviews= session.query(Restaurant).filter_by(id=restraunt_id).first()
+if all_reviews:
+    reviews = all_reviews.all_reviews()
+    print(f"all reviews for {all_reviews.name}")
+    for review in reviews:
+        print (review)
+fanciest = Restaurant.fanciest(session)
+if fanciest :
+    print(f"fanciest restaurant is: {fanciest.name}")
+

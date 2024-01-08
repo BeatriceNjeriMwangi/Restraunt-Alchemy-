@@ -26,10 +26,16 @@ class Customer(Base):
             return  None
         else:
             return max (self.review(),key=lambda review: review.star_rating).restaurant()
+    # def add_review(self, restaurant, rating):
+    #     review = Review(star_rating=rating,restaurant_id=restaurant, customer_id=1)
+    #     session.add(review)
+    #     session.commit()
     def add_review(self, restaurant, rating):
-        review = Review(customer_id=1, restaurant_id=restaurant, star_rating=rating)
-        session.add(review)
+        rev = Review(star_rating=rating,restaurant_id=restaurant, customer_id=self)
+        self.reviews.append(rev)
         session.commit()
+        return rev
+
 
     def delete_reviews(self, restaurant):
         session.query(Review).filter_by(customer_id=self.id, restaurant_id=restaurant.id).delete()

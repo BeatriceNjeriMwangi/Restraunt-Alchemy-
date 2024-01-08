@@ -5,7 +5,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from .Base import Base, session
 class Restaurant(Base):
-    __tareblename__="restaurants"
+    __tablename__="restaurants"
     id=Column(Integer, primary_key=True)
     name=Column(String)
     price=Column(Integer)
@@ -21,7 +21,7 @@ class Restaurant(Base):
         return [review.customers.full_name() for review in self.reviews]
     
     @classmethod
-    def fanciest(cls):
+    def fanciest(cls, session):
         
         return session.query(cls).order_by(cls.price.desc()).first()
 
