@@ -1,7 +1,7 @@
 Generic single-database configuration.
 #Restraunt with sqlalchemy
 INTRODUCTION:
-We are creating a restaurant program using sql alchemy.xx7xx
+We are creating a restaurant program using sql alchemy.
 This is a simple Python application that uses SQLAlchemy to model a restaurant review system. The system includes three main entities: Restaurants, Customers, and Reviews.
 
 
